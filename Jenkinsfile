@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DISCORD_WEBHOOK = credentials('discord-webhook')
-        CONFIG_FILE = credentials('config')
-    }
-
     tools {
         jdk 'jdk_17'
     }
@@ -73,12 +68,6 @@ pipeline {
                     );
                 }
             }
-        }
-    }
-
-    post {
-        always {
-            discordSend link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK
         }
     }
 }

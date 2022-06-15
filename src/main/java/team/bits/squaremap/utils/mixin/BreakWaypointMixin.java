@@ -16,7 +16,7 @@ public class BreakWaypointMixin {
             method = "setBlockState(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;II)Z",
             at = @At("HEAD")
     )
-    public void test(BlockPos pos, BlockState state, int flags, int maxUpdateDepth, CallbackInfoReturnable<Boolean> cir) {
+    public void stateChanged(BlockPos pos, BlockState state, int flags, int maxUpdateDepth, CallbackInfoReturnable<Boolean> cir) {
         World world = (World) (Object) this;
         Block block = world.getBlockState(pos).getBlock();
         // If block having state updated could be a waypoint

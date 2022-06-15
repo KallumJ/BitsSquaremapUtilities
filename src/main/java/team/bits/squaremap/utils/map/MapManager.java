@@ -91,7 +91,7 @@ public final class MapManager {
      * @param block the block to check
      * @return true if can be used to create markers, false otherwise
      */
-    public static boolean isBlockTypeOfMarker(Block block) {
+    public static boolean isBlockTypeOfWaypoint(Block block) {
         return block instanceof BannerBlock;
     }
 

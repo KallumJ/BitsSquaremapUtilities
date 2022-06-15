@@ -36,15 +36,15 @@ pipeline {
         stage("Publish") {
             steps {
                 script {
-                    artifactPath = 'build/libs/bits-squaremap-utils-${BRANCH_NAME}-${BUILD_NUMBER}.jar';
-                    sourcesPath = 'build/libs/bits-squaremap-utils-${BRANCH_NAME}-${BUILD_NUMBER}-sources.jar';
+                    artifactPath = 'build/libs/bits-squaremap-utilities-${BRANCH_NAME}-${BUILD_NUMBER}.jar';
+                    sourcesPath = 'build/libs/bits-squaremap-utilities-${BRANCH_NAME}-${BUILD_NUMBER}-sources.jar';
 
                     if (env.BRANCH_NAME == "master") {
                         groupId = "team.bits"
-                        artifactId = "squaremap-utils"
+                        artifactId = "squaremap-utilities"
                     } else {
-                        groupId = "team.bits.squaremap-utils.dev"
-                        artifactId = "squaremap-utils-${BRANCH_NAME}"
+                        groupId = "team.bits.squaremap-utilities.dev"
+                        artifactId = "squaremap-utilities-${BRANCH_NAME}"
                     }
 
                     nexusArtifactUploader(

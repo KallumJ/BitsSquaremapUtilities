@@ -1,8 +1,8 @@
 package team.bits.squaremap.utils.map;
 
-import net.minecraft.block.BannerBlock;
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.tag.BlockTags;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import org.apache.logging.log4j.LogManager;
@@ -88,11 +88,11 @@ public final class MapManager {
     /**
      * Finds whether the provided block is a block that can be used to create markers
      *
-     * @param block the block to check
+     * @param blockState the block state to check
      * @return true if can be used to create markers, false otherwise
      */
-    public static boolean isBlockTypeOfWaypoint(Block block) {
-        return block instanceof BannerBlock;
+    public static boolean isBlockTypeOfWaypoint(BlockState blockState   ) {
+        return blockState.isIn(BlockTags.BANNERS);
     }
 
     /**

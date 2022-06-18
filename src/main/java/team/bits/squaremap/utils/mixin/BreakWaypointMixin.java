@@ -1,6 +1,5 @@
 package team.bits.squaremap.utils.mixin;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -18,9 +17,9 @@ public class BreakWaypointMixin {
     )
     public void stateChanged(BlockPos pos, BlockState state, int flags, int maxUpdateDepth, CallbackInfoReturnable<Boolean> cir) {
         World world = (World) (Object) this;
-        Block block = world.getBlockState(pos).getBlock();
+        BlockState blockState = world.getBlockState(pos);
         // If block having state updated could be a waypoint
-        if (MapManager.isBlockTypeOfWaypoint(block)) {
+        if (MapManager.isBlockTypeOfWaypoint(blockState)) {
 
             // If state is being updated with air (being broken)
             if (state.isAir()) {

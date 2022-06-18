@@ -30,8 +30,8 @@ public class PlaceWaypointMixin {
         if (itemStack.hasCustomName() && placer instanceof ServerPlayerEntity player) {
             String waypointName = itemStack.getName().getString();
 
-            // Ominous banners have an empty custom name
-            if (!waypointName.equals("")) {
+            // Dont allow ominous banners to make waypoints
+            if (!waypointName.equals("Ominous Banner")) {
                 DyeColor color = bannerBlock.getColor();
                 Dimension dimension = DimensionUtils.getDimensionForRegistryKey(world.getRegistryKey());
 

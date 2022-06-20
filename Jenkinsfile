@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+            DISCORD_WEBHOOK = credentials('discord-webhook')
+            CONFIG_FILE = credentials('config')
+        }
+
     tools {
         jdk 'jdk_17'
     }
@@ -12,7 +17,7 @@ pipeline {
                 sh './gradlew clean build'
             }
         }
-        /* Squaremap is not available on 1.19 yet. This test will fail. stage('Test') {
+        stage('Test') {
             steps {
                 sh 'rm -rf test/'
                 sh 'git clone https://hogwarts.bits.team/git/Bits/TestServer.git test/'
@@ -21,13 +26,13 @@ pipeline {
                 sh 'cp $CONFIG_FILE prod-server/config/bits-vanilla.cfg'
                 sh """test/production_server_test.sh \
                         --java-path '${JAVA_HOME}' \
-                        --mod-jar 'bits-vanilla-fabric-${BRANCH_NAME}-${BUILD_NUMBER}.jar' \
+                        --mod-jar 'bits-vanilla-fabric-master-5.jar' \
                         --mc-version '1.19' \
                         --loader-version '0.14.6' \
                         --install-mod 'fabric-api' '1.19'
                    """
             }
-        }*/
+        }
         stage('Archive') {
             steps {
                 archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
@@ -70,4 +75,10 @@ pipeline {
             }
         }
     }
+
+    post {
+            always {
+                discordSend link: env.BUILD_URL, result: currentBuild.currentResult, title: JOB_NAME, webhookURL: DISCORD_WEBHOOK
+            }
+        }
 }

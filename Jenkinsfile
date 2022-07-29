@@ -4,6 +4,7 @@ pipeline {
     environment {
             DISCORD_WEBHOOK = credentials('discord-webhook')
             CONFIG_FILE = credentials('config')
+            SQUAREMAP_CONFIG = credentials('squaremap-config')
         }
 
     tools {
@@ -24,12 +25,15 @@ pipeline {
                 sh 'chmod +x test/production_server_test.sh'
                 sh 'rm -rf prod-server/ && mkdir -p prod-server/config'
                 sh 'cp $CONFIG_FILE prod-server/config/bits-vanilla.cfg'
+                sh 'mkdir prod-server/squaremap/'
+                sh 'cat $SQUAREMAP_CONFIG > prod-server/squaremap/config.yml'
                 sh """test/production_server_test.sh \
                         --java-path '${JAVA_HOME}' \
-                        --mod-jar 'bits-vanilla-fabric-master-5.jar' \
-                        --mc-version '1.19' \
-                        --loader-version '0.14.6' \
-                        --install-mod 'fabric-api' '1.19'
+                        --mod-jar 'bits-squaremap-utilities-${BRANCH_NAME}-${BUILD_NUMBER}.jar' \
+                        --mc-version '1.19.1' \
+                        --loader-version '0.14.8' \
+                        --install-mod 'fabric-api' '1.19.1' \
+                        --install-mod 'jpenilla' 'squaremap'
                    """
             }
         }

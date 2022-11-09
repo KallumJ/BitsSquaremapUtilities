@@ -11,5 +11,5 @@ A mod to extend the functionality of [squaremap](https://github.com/jpenilla/squ
 - Players adding and removing waypoints on the map from in game
 - Automatically saving and loading waypoints.
 - Ability to add custom icons to the map
-- Ability to add custom layers of icons to the map in differnt dimensions
+- Ability to add custom layers of icons to the map in different dimensions
 

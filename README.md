@@ -1,5 +1,5 @@
 
-# Bits Squaremap Utilities
+# Bits Squaremap Utilities ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
 
 A mod to extend the functionality of [squaremap](https://github.com/jpenilla/squaremap) for the Bits Minecraft servers.
 
